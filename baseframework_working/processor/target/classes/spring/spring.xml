@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://camel.apache.org/schema/spring 
+                           http://camel.apache.org/schema/spring/camel-spring.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Kie Client properties and bean -->
+	<!-- <context:annotation-config /> -->
+<!-- 	<bean	class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:kie.properties</value>
+		</property>
+        <property name="placeholderPrefix" value="$kie{" />
+        <property name="placeholderSuffix" value="}" />
+	</bean>		
+	<bean name="kieClient" class="gov.faa.ait.soa.kie.kie_client.KieClient"
+          init-method="init" destroy-method="destroy" >
+		<constructor-arg value="$kie{kie.attemptKieScanner}"/>
+        <constructor-arg value="$kie{kie.staticRuleRelativeFilePath}"/>
+		<constructor-arg value="$kie{kie.mavenSettingsFile}" />
+		<constructor-arg value="$kie{kie.groupId}" />
+		<constructor-arg value="$kie{kie.artifactId}" />
+		<constructor-arg value="$kie{kie.version}" />
+		<constructor-arg value="$kie{kie.scanIntervalMS}" />
+		<constructor-arg value="$kie{kie.trustStoreFile}" />
+		<constructor-arg value="$kie{kie.trustStorePassword}" />
+	</bean>  -->   
+
+    <!--==ACTIVE MQ SPECIFICATIONS=========================================== -->
+
+    <!--==LOCAL - ACTIVE MQ SPECIFICATIONS= = = = = = = = = = = = = = = = = = = -->
+<!--     <bean id="local-jmsConnectionFactory" class="org.apache.activemq.ActiveMQSslConnectionFactory">
+        <property name="brokerURL"          value="${jms.brokerURL}" />
+        <property name="userName"           value="${jms.userName}" />
+        <property name="password"           value="${jms.password}" />
+        <property name="trustStore"         value="${jms.ts.path}"/>
+        <property name="trustStorePassword" value="${jms.ts.pw}"/>
+        <property name="trustedPackages">
+            <list>
+                <value>gov.faa.soa</value>
+                <value>java.util</value>
+            </list>
+        </property>
+    </bean> -->
+<!-- 	<bean id="local-pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+		init-method="start" destroy-method="stop">
+        <property name="maxConnections"    value="${jms.max.connections}" />
+        <property name="connectionFactory" ref="local-jmsConnectionFactory" />
+    </bean>
+    <bean id="local-jmsQueueConfig" class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory"   ref="local-pooledConnectionFactory" />
+        <property name="concurrentConsumers" value="${jms.max.consumers}" />
+    </bean>
+    NOTE: this id CANNOT make use of a config/property value, but MUST match the leading part
+         of any endpoint string - e.g., 'local-activeMqId:queue:queue-name'
+    <bean id="local-activeMqId" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="configuration" ref="local-jmsQueueConfig" />
+    </bean> -->
+
+    <!-- Camel Context created here will be @Autowired in Java Conf and used in the ReliableFailoverProcessingGroup -->
+    <!-- <camelContext xmlns="http://camel.apache.org/schema/spring"
+                   id="camelContextId">
+        <template id="producerTemplateId" />
+    </camelContext> -->
+
+</beans>

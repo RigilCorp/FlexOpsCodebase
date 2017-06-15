@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+<!-- 	<localRepository>../webapps/atoms-siso/WEB-INF/classes</localRepository>
+    <servers>
+        <server>
+            <id>business-central</id>
+            <username>atomsExec</username>
+            <password>Z6RpBHmpHB4Md!86</password>
+            <configuration>
+                <wagonProvider>httpclient</wagonProvider>
+                <httpConfiguration>
+                    <all>
+                        <usePreemptive>true</usePreemptive>
+                    </all>
+                </httpConfiguration>
+            </configuration>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <id>remote-kie</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <id>central</id>
+                    <name>libs-release</name>
+                    <url>http://iamcdcdvap506.avs.faa.gov:8081/artifactory/repo</url>
+                </repository>
+                <repository>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>always</updatePolicy>
+                    </snapshots>
+                    <id>snapshots</id>
+                    <name>libs-snapshot</name>
+                    <url>http://iamcdcdvap506.avs.faa.gov:8081/artifactory/repo</url>
+                </repository>
+			</repositories>
+		</profile>
+	</profiles>
+	<activeProfiles>
+		<activeProfile>remote-kie</activeProfile>
+	</activeProfiles> -->
+</settings>  
+     

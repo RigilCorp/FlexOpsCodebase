@@ -1,0 +1,15 @@
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseLoggingConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\transformer\JsonTransformer.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseDBConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseCachingConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseWebMvcConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\util\JSONToPojo.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseSingleDataSourceConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\exception\FoundationServiceException.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BasePropertyConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseStandaloneConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseMessageTransformerConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseJndiDataBaseConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\config\BaseTestStandaloneConfig.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\logging\AspectLogger.java
+C:\baseframework_working\baseframework_working\web-app-starter\base-classes\src\main\java\com\flexops\common\exception\FoundationServiceErrorCode.java

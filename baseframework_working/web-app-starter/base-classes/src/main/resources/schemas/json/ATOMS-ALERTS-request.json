@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Enterprise Document Schema with Alerts Request",
+  "type": "object",
+  "required": [
+    "EnterpriseDocument"
+  ],
+  "properties": {
+    "EnterpriseDocument": {
+      "type": "object",
+      "properties": {
+        "DocumentTimeStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DocumentHeader": {
+          "$ref": "#/definitions/documentHeaderDef"
+        },
+        "DocumentBody": {
+          "$ref": "#/definitions/documentBodyDef"
+        },
+        "DocumentBodyBinary": {
+          "$ref": "#/definitions/documentBodyBinaryDef"
+        },
+        "DocumentError": {
+          "$ref": "#/definitions/documentErrorDef"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "requestDef": {
+      "description": "Request Data that can refer to another JSON (schema) definition",
+      "type": "object",
+      "properties": {
+        "requestMessage": {
+          "$ref": "#/definitions/alertsRequestDef"
+        }
+      }
+    },
+    "responseDef": {
+      "description": "Response Data that can refer to another JSON (schema) definition",
+      "type": "object",
+      "properties": {
+        "responseMessage": {
+          "$ref": "#/definitions/alertsServiceResponseDef"
+        }
+      }
+    },
+    
+    "alertsServiceResponseDef" : {
+    	"description": "Alerts Service Response Definition",
+      	"type": "string"
+    },
+    "documentHeaderDef": {
+      "type": "object",
+      "properties": {
+        "documentServiceId": {
+          "description": "Unique identifier for a specific exchange",
+          "type": "string"
+        },
+        "documentBusinessHeader": {
+          "description": "Application specific data",
+          "type": "string"
+        }
+      },
+      "required": [
+        "documentServiceId"
+      ]
+    },
+    "documentBodyDef": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/requestDef"
+        },
+        "response": {
+          "$ref": "#/definitions/responseDef"
+        }
+      },
+      "required": [
+        "request", "response"
+      ]
+    },
+    "documentBodyBinaryDef": {
+      "type": "object",
+      "properties": {
+        "BinaryObject.Base64": {
+          "type": "string"
+        },
+        "BinaryTypeText": {
+          "type": "string"
+        },
+        "BinaryMimeType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "BinaryObject.Base64",
+        "BinaryTypeText",
+        "BinaryMimeType"
+      ]
+    },
+    "documentErrorDef": {
+      "description": "Error",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "originalData": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorMessage"
+      ]
+    },
+    "alertsRequestDef": {
+      "description": "Request Object For Alerts",
+      "type": "object",
+      "properties": {
+        "alertRequestType" : {
+          "type" : "string"
+        },
+        "alertId" : {
+          "type" : "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "areaId": {
+          "type": "string"
+        },
+        "empSupervisorId": {
+          "type": "string"
+        },
+        "empId": {
+          "type": "string"
+        },
+        "alertTypeCd": {
+          "type": "string"
+        },
+        "alertActionTypeCd": {
+          "type": "string"
+        },
+        "alertResolutionTypeCd": {
+          "type": "string"
+        },
+        "alertStatusTypeCd": {
+          "type": "string"
+        },
+        "positionId": {
+          "type": "string"
+        },
+        "nonPositionId": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

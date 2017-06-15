@@ -1,0 +1,333 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.flexops</groupId>
+  <artifactId>web-app-starter</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <description>Starting Point for ATOMS (and possible other) Web App Creation</description>
+  
+      <modules>
+        <module>base-classes</module>
+    </modules>
+  <properties>
+
+        <!-- this should always be kept in sync with the <version> of this artifact -->
+        <core.version>1.1-b</core.version>
+
+        <!-- this should always be kept as 1 minor increment ahead of <core.version> of this artifact -->
+        <core.upper.bound.version>1.2-b</core.upper.bound.version>
+
+        <!-- This clears the builNum for local builds.
+             It will be manually overridden in Jenkins, with -DbuildNum="##".
+             It MUST be formatted with a leading dash, like "-DbuildNum=-1" -->
+        <buildNum />
+        <!-- RELEASED descendants of this will be versioned like ${core.version}${buildNum}
+             e.g., 1.1-b-1 -->
+
+        <!-- SOA-INFRASTRUCTURE VERSION SETTINGS -->
+        
+
+        <!-- overridden so that we can set "trustedPackages" in spring xml def'n of Connection Factories -->
+        
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <start-class>demo.Application</start-class>
+        <java.version>1.7</java.version>
+        <maven.test.skip>true</maven.test.skip>
+
+        <version.reactor>1.1.6.RELEASE</version.reactor>
+        <version.gson>2.4</version.gson>
+        <commons-lang3.version>3.3.2</commons-lang3.version>
+        <version.commons.io>2.4</version.commons.io>
+        <version.geronimo.jms.specs>1.1.1</version.geronimo.jms.specs>
+        <version.hibernate.jpa.api>1.0.0.Final</version.hibernate.jpa.api>
+        <ojdbc6.version>11.2.0.3</ojdbc6.version>
+        <drools.version>5.5.0.Final</drools.version>
+        <!-- logback 'lb' states that SLF4J version must 'match' 1.7.7 is taken from the lb-parent POM v1.1.3-->
+        <lb.version>1.1.7</lb.version>
+        <slf4j.version>1.7.15</slf4j.version>
+
+        <!-- latest RELEASE version as of Dec 2015 -->
+        <version.spring-boot>1.3.0.RELEASE</version.spring-boot>
+        <!-- elastic search is versioned by spring-boot, but lucene is not
+             the below versions go together and match with spring-boot's 
+             1.3.0-RELEASE version -->
+        <version.elasticsearch>1.5.2</version.elasticsearch>
+        <version.lucene>4.10.4</version.lucene>
+
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${version.spring-boot}</version>
+                <type>pom</type>
+                <scope>import</scope>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.derby</groupId>
+                <artifactId>derbyclient</artifactId>
+                <version>10.12.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.lucene</groupId>
+                <artifactId>lucene-expressions</artifactId>
+                <version>${version.lucene}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>${amq.client.override.version}</version>
+            </dependency>
+            <dependency>
+                <artifactId>commons-codec</artifactId>
+                <groupId>commons-codec</groupId>
+                <version>1.9</version>
+            </dependency>
+        </dependencies>
+        </dependencyManagement>
+        <dependencies>
+        
+        <!-- SPRING -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-messaging</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-integration</artifactId>
+            <scope>provided</scope>
+<!--             <exclusions> -->
+<!--                 <exclusion>context -->
+<!--                     <artifactId>commons-io</artifactId> -->
+<!--                     <groupId>commons-io</groupId> -->
+<!--                 </exclusion> -->
+<!--             </exclusions> -->
+        </dependency>
+        <dependency>
+            <artifactId>commons-io</artifactId>
+            <groupId>commons-io</groupId>
+            <version>${version.commons.io}</version>
+            <scope>compile</scope>
+            <!-- specifically excluded from spring-integration (provided scope) and
+                 included here (compile scope), as needed at runtime and not provided
+                 by the (tomcat) container -->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-jms_1.1_spec</artifactId>
+            <version>${version.geronimo.jms.specs}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.castor</groupId>
+            <artifactId>castor</artifactId>
+            <version>1.2</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${version.gson}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+        </dependency>
+
+        <!-- DATABASE -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>${ojdbc6.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.8.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+            <version>${version.hibernate.jpa.api}</version>
+        </dependency>
+        <!-- LOGGING -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>${lb.version}</version>
+            <!-- <scope>provided</scope> -->
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${lb.version}</version>
+        </dependency>
+    </dependencies>
+    
+        <profiles>
+        <profile>
+            <!--
+                 This default profile is intended for use by developers.  It is active by default,
+                 so there is no need for developers to do anything, in order to use it.
+             -->
+            <id>local</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <snapshot>-SNAPSHOT</snapshot>
+            </properties>
+            <dependencyManagement>
+                <dependencies>
+                    <!-- Web App Starter -->
+                    <dependency>
+                        <groupId>com.flexops.atoms.web-app-starter</groupId>
+                        <artifactId>base-classes</artifactId>
+                        <version>[${core.version}-SNAPSHOT]</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.flexops.atoms.web-app-starter</groupId>
+                        <artifactId>base-classes</artifactId>
+                        <type>test-jar</type>
+                        <scope>test</scope>
+                        <version>[${core.version}-SNAPSHOT]</version>
+                    </dependency>
+                    <!-- Foundation Services -->
+<!--                     <dependency>
+                        <groupId>gov.faa.atoms.foundation-services</groupId>
+                        <artifactId>alerts</artifactId>
+                        <version>[${core.version}-SNAPSHOT]</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>gov.faa.atoms.foundation-services</groupId>
+                        <artifactId>contract</artifactId>
+                        <version>[${core.version}-SNAPSHOT]</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>gov.faa.atoms.foundation-services</groupId>
+                        <artifactId>data</artifactId>
+                        <version>[${core.version}-SNAPSHOT]</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>gov.faa.atoms.foundation-services</groupId>
+                        <artifactId>utils</artifactId>
+                        <version>[${core.version}-SNAPSHOT]</version>
+                    </dependency> -->
+                 </dependencies>
+            </dependencyManagement>
+        </profile>
+        </profiles>
+</project>

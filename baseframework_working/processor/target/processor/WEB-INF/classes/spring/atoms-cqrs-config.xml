@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jms="http://www.springframework.org/schema/jms"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd 
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/jms
+        http://www.springframework.org/schema/jms/spring-jms.xsd">
+
+	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQSslConnectionFactory">
+		<property name="brokerURL" value="${jms.brokerURL}" />
+		<property name="userName" value="${jms.userName}" />
+		<property name="password" value="${jms.password}" />
+		<property name="trustStore" value="${jms.ts.path}" />
+		<property name="trustStorePassword" value="${jms.ts.pw}" />
+		<property name="trustedPackages">
+			<list>
+				<value>gov.faa.soa</value>
+				<value>java.util</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Pooled Spring connection factory -->
+	<bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"
+		init-method="start" destroy-method="stop">
+		<property name="maxConnections" value="${jms.max.connections}" />
+		<property name="connectionFactory" ref="amqConnectionFactory" />
+	</bean>
+
+		<!-- Default Destination Topic Definition -->
+	<bean id="defaultTopicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+		<!-- name of the queue -->
+		<constructor-arg index="0" value="us.gov.dot.faa.atoms.SISO.event.t" />
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<constructor-arg name="connectionFactory" ref="connectionFactory"></constructor-arg>
+	</bean>
+
+	<bean id="jmsTopicTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<constructor-arg name="connectionFactory" ref="connectionFactory"></constructor-arg>
+		<property name="defaultDestination" ref="defaultTopicDestination" />
+		<property name="pubSubDomain" value="true"/>
+	</bean>
+
+</beans>

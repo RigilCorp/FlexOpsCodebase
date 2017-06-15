@@ -1,0 +1,12 @@
+com\flexops\common\config\BaseSingleDataSourceConfig.class
+com\flexops\common\config\BaseCachingConfig.class
+com\flexops\common\util\JSONToPojo.class
+com\flexops\common\transformer\JsonTransformer.class
+com\flexops\common\exception\FoundationServiceErrorCode.class
+com\flexops\common\config\BaseDBConfig.class
+com\flexops\common\config\BaseLoggingConfig.class
+com\flexops\common\config\BaseMessageTransformerConfig.class
+com\flexops\common\exception\FoundationServiceException.class
+com\flexops\common\config\BaseJndiDataBaseConfig.class
+com\flexops\common\logging\AspectLogger.class
+com\flexops\common\config\BaseWebMvcConfig.class

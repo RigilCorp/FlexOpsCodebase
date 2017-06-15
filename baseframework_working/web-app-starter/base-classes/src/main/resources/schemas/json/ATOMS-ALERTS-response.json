@@ -1,0 +1,424 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Enterprise Document Schema with Alerts Response",
+  "type": "object",
+  "required": [
+    "EnterpriseDocument"
+  ],
+  "properties": {
+    "EnterpriseDocument": {
+      "type": "object",
+      "properties": {
+        "DocumentTimeStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DocumentHeader": {
+          "$ref": "#/definitions/documentHeaderDef"
+        },
+        "DocumentBody": {
+          "$ref": "#/definitions/documentBodyDef"
+        },
+        "DocumentBodyBinary": {
+          "$ref": "#/definitions/documentBodyBinaryDef"
+        },
+        "DocumentError": {
+          "$ref": "#/definitions/documentErrorDef"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "requestDef": {
+      "description": "Request Data that can refer to another JSON (schema) definition",
+      "type": "object",
+      "properties": {
+        "requestMessage": {
+          "type": "string"
+        }
+      }
+    },
+    "responseDef": {
+      "description": "Response Data that can refer to another JSON (schema) definition",
+      "type": "object",
+      "properties": {
+        "responseMessage": {
+          "$ref": "#/definitions/alertsServiceResponseDef"
+        }
+      }
+    },
+    "documentHeaderDef": {
+      "type": "object",
+      "properties": {
+        "documentServiceId": {
+          "description": "Unique identifier for a specific exchange",
+          "type": "string"
+        },
+        "documentBusinessHeader": {
+          "description": "Application specific data",
+          "type": "string"
+        }
+      },
+      "required": [
+        "documentServiceId"
+      ]
+    },
+    "documentBodyDef": {
+      "type": "object",
+      "properties": {
+        "response": {
+          "$ref": "#/definitions/responseDef"
+        }
+      },
+      "required": [
+        "response"
+      ]
+    },
+    "documentBodyBinaryDef": {
+      "type": "object",
+      "properties": {
+        "BinaryObject.Base64": {
+          "type": "string"
+        },
+        "BinaryTypeText": {
+          "type": "string"
+        },
+        "BinaryMimeType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "BinaryObject.Base64",
+        "BinaryTypeText",
+        "BinaryMimeType"
+      ]
+    },
+    "documentErrorDef": {
+      "description": "Error",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "originalData": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorMessage"
+      ]
+    },
+    "employeesDef": {
+      "description": "Employees Schedule Details",
+      "type": "object",
+      "properties": {
+        "empId": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "empRole": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "responseTypeDef": {
+      "description": "Response Type Details",
+      "type": "object",
+      "properties": {
+        "responseTypeCd": {
+          "type": "string"
+        },
+        "responseTypeDesc": {
+          "type": "string"
+        }
+      }
+    },
+    "eventTypeDef": {
+      "description": "Event Type Details",
+      "type": "object",
+      "properties": {
+        "eventTypeCd": {
+          "type": "string"
+        },
+        "eventTypeDesc": {
+          "type": "string"
+        }
+      }
+    },
+    "alertResolutionDef": {
+      "description": "Alert Action Details",
+      "type": "object",
+      "properties": {
+        "alertResolutionTypeCd": {
+          "type": "string"
+        },
+        "alertResolutionTypeDesc": {
+          "type": "string"
+        },
+        "alertResolutionIsManual": {
+          "type": "string"
+        },
+        "alertResolutionManualLink": {
+          "type": "string"
+        }
+      }
+    },
+    "alertTypeDef": {
+      "description": "Alert Type Details",
+      "type": "object",
+      "properties": {
+        "alertTypeCd": {
+          "type": "string"
+        },
+        "alertTypeDesc": {
+          "type": "string"
+        },
+        "alertTitle": {
+          "type": "string"
+        },
+        "alertScenario": {
+          "type": "string"
+        }
+      }
+    },
+    "statusTypeDef": {
+      "description": "Status Type Details",
+      "type": "object",
+      "properties": {
+        "statusTypeCd": {
+          "type": "string"
+        },
+        "statusTypeDesc": {
+          "type": "string"
+        }
+      }
+    },
+    "severityTypeDef": {
+      "description": "Status Type Details",
+      "type": "object",
+      "properties": {
+        "sevTypeCd": {
+          "type": "string"
+        },
+        "sevTypeDesc": {
+          "type": "string"
+        }
+      }
+    },
+    "sisoEventDef": {
+      "description": "SISO Event Details",
+      "type": "object",
+      "properties": {
+        "sisoEventId": {
+          "type": "string"
+        },
+        "employee": {
+          "$ref": "#/definitions/employeesDef"
+        },
+        "eventType": {
+          "$ref": "#/definitions/eventTypeDef"
+        },
+        "developmentalEmployee": {
+          "$ref": "#/definitions/employeesDef"
+        },
+        "areaId": {
+          "type": "string"
+        },
+        "position": {
+          "$ref": "#/definitions/positionDef"
+        },
+        "sisoEventSource": {
+          "type": "string"
+        }
+      }
+    },
+    "positionDef": {
+      "description": "Position Details",
+      "type": "object",
+      "properties": {
+        "postitionId": {
+          "type": "string"
+        },
+        "positionName": {
+          "type": "string"
+        }
+      }
+    },
+    "nonPositionDef": {
+      "description": "Non Position Details",
+      "type": "object",
+      "properties": {
+        "nonPostitionId": {
+          "type": "string"
+        },
+        "nonPositionName": {
+          "type": "string"
+        }
+      }
+    },
+    "alertDetailsDef": {
+      "description": "Alert Details",
+      "type": "object",
+      "properties": {
+        "alertId": {
+          "type": "string"
+        },
+        "alertType": {
+          "$ref": "#/definitions/alertTypeDef"
+        },
+        "employee": {
+          "$ref": "#/definitions/employeesDef"
+        },
+        "sisoEventList": {
+          "description": "List of SISO events",
+          "type": "object",
+          "properties": {
+            "sisoEvent": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "sisoEventDetails": {
+                    "$ref": "#/definitions/sisoEventDef"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "alertStatusList": {
+          "description": "List of status",
+          "type": "object",
+          "properties": {
+            "alertStatus": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "alertStatusDetails": {
+                    "$ref": "#/definitions/statusTypeDef"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "alertResolutionList": {
+          "description": "List of resolutions",
+          "type": "object",
+          "properties": {
+            "alertResolution": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "alertResolutionDetails": {
+                    "$ref": "#/definitions/alertResolutionDef"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ppdId": {
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/definitions/severityTypeDef"
+        },
+        "snoozeEndTime": {
+          "type": "string"
+        },
+        "revisionNo": {
+          "type": "string"
+        },
+        "revisionDesc": {
+          "type": "string"
+        },
+        "isValid": {
+          "type": "boolean"
+        },
+        "position": {
+          "$ref": "#/definitions/positionDef"
+        },
+        "nonPosition": {
+          "$ref": "#/definitions/nonPositionDef"
+        },
+        "alertEventType": {
+          "$ref": "#/definitions/eventTypeDef"
+        },
+        "alertResponseList": {
+          "type": "object",
+          "description": "List of responses",
+          "properties": {
+            "alertResponse": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "alertResponseDetails": {
+                    "$ref": "#/definitions/responseTypeDef"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "alertStartTime": {
+          "type": "string"
+        },
+        "alertEndTime": {
+          "type": "string"
+        }
+      }
+    },
+    "alertsServiceResponseDef": {
+      "description": "Response object that contains alerts detail",
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "type": "string"
+        },
+        "endTime": {
+          "type": "string"
+        },
+        "areaId": {
+          "type": "string"
+        },
+        "alertList:": {
+          "type": "object",
+          "properties": {
+            "alert": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "properties": {
+                  "alertDetails": {
+                    "$ref": "#/definitions/alertDetailsDef"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

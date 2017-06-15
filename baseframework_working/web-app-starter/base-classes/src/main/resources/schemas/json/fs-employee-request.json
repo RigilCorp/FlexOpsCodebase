@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "Enterprise Document Schema for the Employee REST Service Request. The same schema can be used for all employee service request related soperations (GET, PUT, DELETE, UPDATE).",
+  "type": "object",
+  "required": [
+    "EnterpriseDocument"
+  ],
+  "properties": {
+    "EnterpriseDocument": {
+      "type": "object",
+      "properties": {
+        "DocumentTimeStamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "DocumentHeader": {
+          "$ref": "#/definitions/documentHeaderDef"
+        },
+        "DocumentBody": {
+          "$ref": "#/definitions/documentBodyDef"
+        },
+        "DocumentBodyBinary": {
+          "$ref": "#/definitions/documentBodyBinaryDef"
+        },
+        "DocumentError": {
+          "$ref": "#/definitions/documentErrorDef"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "requestDef": {
+      "description": "Request Data that also can refer to another JSON (schema) definition",
+      "type": "object",
+      "properties": {
+        "requestMethod": {
+          "description": "PUT|UPDATE|DELETE",
+          "type": "string"
+        },      
+        "requestCriteria": {
+          "description": "Criteria to be used for this request. {ALL, element1,element2,...}. NOTE: 'ALL' criteria can be only used for UPDATE or INSERT operations. ",
+          "type": "string"
+        },
+        "requestMessage": {
+          "$ref": "#/definitions/employeeServiceRequestDef"
+        }
+      },
+      "required": [
+        "requestCriteria"
+      ]
+    },
+    "responseDef": {
+      "description": "Response Data that also can refer to another JSON (schema) definition. N/A here since this is a request schema for the employee service.",
+      "type": "object",
+      "properties": {
+        "responseMessage": {
+          "$ref": "#/definitions/employeeServiceResponseDef"
+        }
+      }
+    },
+    "employeeServiceResponseDef": {
+      "description": "Employee Service Response Definition",
+      "type": "string"
+    },
+    "documentHeaderDef": {
+      "type": "object",
+      "properties": {
+        "documentServiceId": {
+          "description": "Unique identifier for a specific exchange",
+          "type": "string"
+        },
+        "documentBusinessHeader": {
+          "description": "Application specific data",
+          "type": "string"
+        }
+      },
+      "required": [
+        "documentServiceId"
+      ]
+    },
+    "documentBodyDef": {
+      "type": "object",
+      "properties": {
+        "request": {
+          "$ref": "#/definitions/requestDef"
+        },
+        "response": {
+          "$ref": "#/definitions/responseDef"
+        }
+      },
+      "required": [
+        "request",
+        "response"
+      ]
+    },
+    "documentBodyBinaryDef": {
+      "type": "object",
+      "properties": {
+        "BinaryObject.Base64": {
+          "type": "string"
+        },
+        "BinaryTypeText": {
+          "type": "string"
+        },
+        "BinaryMimeType": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "BinaryObject.Base64",
+        "BinaryTypeText",
+        "BinaryMimeType"
+      ]
+    },
+    "documentErrorDef": {
+      "description": "Error",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "errorMessage": {
+          "type": "string"
+        },
+        "originalData": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "errorMessage"
+      ]
+    },
+    "employeeDef": {
+      "description": "Employee Details",
+      "type": "object",
+      "properties": {
+        "empId": {
+          "type": "string"
+        },
+        "empFAAId": {
+          "type": "string"
+        },
+        "empFirstName": {
+          "type": "string"
+        },
+        "empMiddleInitial": {
+          "type": "string"
+        },
+        "empLastName": {
+          "type": "string"
+        },
+        "empDefaultArea": {
+          "type": "string"
+        },
+        "empDefaultFacility": {
+          "type": "string"
+        },
+        "empCrewNo": {
+          "type": "string"
+        },
+        "empQualification": {
+          "type": "string"
+        }
+      }
+    },
+    "employeeServiceRequestDef": {
+      "description": "Request Object For Employee Service",
+      "type": "object",
+      "properties": {
+        "employee": {
+          "$ref": "#/definitions/employeeDef"
+        }
+      }
+    }
+  }
+}

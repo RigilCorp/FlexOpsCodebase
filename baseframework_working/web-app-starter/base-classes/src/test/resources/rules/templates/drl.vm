@@ -1,0 +1,29 @@
+package $packageName;
+
+#if($dialect)
+dialect "$dialect"
+#else
+dialect "mvel"
+#end
+
+#foreach($import in $imports)
+import $import;
+#end
+
+#if($globals)
+#foreach($global in $globals)
+global $global;
+#end
+#end
+
+#foreach($rule in $rules)
+rule "$rule.name"
+#if($salience)
+	salience $salience
+#end
+when
+	$rule.condition
+then
+	$rule.action
+end
+#end
